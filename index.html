@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js" integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA==" crossorigin="anonymous"
+        referrerpolicy="no-referrer"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Mitr&display=swap" rel="stylesheet">
+    <style>
+        * {
+            font-family: 'Mitr', sans-serif;
+        }
+    </style>
+    <title>Document</title>
+</head>
+
+<body>
+    <section class="container-fluid">
+        <div class="row justify-content-center mt-3">
+            <div class="card p-0" style="max-width: 400px;">
+                <div class="card-header text-center" style="background-color: #0092fc; color: white;">
+                    <div class="row g-2">
+                        <div class="col-12">
+                            <label for="job-id">เลขที่ใบงาน</label>
+                            <input font-weight: bold;" class="form-control text-center" name="job-id">
+                        </div>
+                        <div class="col-12">
+                            <label for="job-id">เวลาเริ่มต้นของบริการ</label>
+                            <input font-weight: bold;" class="form-control text-center" name="job-time-start" type="datetime-local">
+                        </div>
+                        <div class="col-12">
+                            <label for="contact">ผู้ติดต่อ</label>
+                            <input font-weight: bold;" class="form-control text-center" name="contact">
+                        </div>
+                        <div class="col-12">
+                            <label for="phone">หมายเลขโทรศัพท์</label>
+                            <input type="tel" font-weight: bold;" class="form-control text-center" name="phone" inputmode="tel">
+                        </div>
+                        <div class="col-12">
+                            <label for="contact">วีแชท</label>
+                            <input font-weight: bold;" class="form-control text-center" name="wechat">
+                        </div>
+                    </div>
+                </div>
+                <div class=" card-body">
+
+                    <h5 class=" card-title">บริการรับส่ง</h5>
+                    <div class="row">
+                        <div class="col-6">
+                            <label style="font-size: .7rem" class="text-muted">เวลาเริ่มต้นของบริการ</label>
+                            <p name="time-start" readonly>--:--</p>
+                        </div>
+                        <div class="col-6">
+                            <label style="font-size: .7rem" class="text-muted">ประเภทรถที่ใช้</label>
+                            <input class="form-control" name="car-type">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <label style="font-size: .7rem" class="text-muted">สถานที่รับ</label>
+                            <textarea rows="3" class="form-control" name="address"></textarea>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <label style="font-size: .7rem" class="text-muted">สถานที่ปลายทาง</label>
+                            <textarea rows="3" class="form-control" name="dest-address"></textarea>
+                        </div>
+                    </div>
+                    <div class="row align-items-end">
+                        <div class="col-6">
+                            <label style="font-size: .7rem" class="text-muted">จำนวนผู้โดยสาร</label>
+                            <div class="input-group">
+                                <span class="input-group-text" id="basic-addon1" style="font-size: .7rem">ผู้ใหญ่</span>
+                                <input type="number" inputmode="numeric" class="form-control" aria-label="" aria-describedby="basic-addon1" name="passengers-adult">
+                            </div>
+                        </div>
+                        <div class="col-6">
+
+                            <div class="input-group">
+                                <span class="input-group-text" id="basic-addon1" style="font-size: .7rem">เด็ก</span>
+                                <input type="number" inputmode="numeric" class="form-control" aria-label="" aria-describedby="basic-addon1" name="passengers-kid">
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <label style="font-size: .7rem" class="text-muted">เบาะนั่งเด็ก</label>
+                            <input class="form-control" name="kid-seat">
+                        </div>
+                        <div class="col-6">
+                            <label style="font-size: .7rem" class="text-muted">จำนวนกระเป๋า</label>
+                            <input class="form-control" name="bag">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <label style="font-size: .7rem" class="text-muted">หมายเหตุ</label>
+                            <textarea class="form-control" rows="2" name="note"></textarea>
+                        </div>
+                    </div>
+                    <div class="row mt-3 justify-content-center">
+                        <div class="col-12 text-center">
+                            <button class="btn btn-warning">บันทึกรูป</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center mt-3" style="display: none;">
+            <div class="card p-0" style="max-width: 400px;" id="save-area">
+                <div class="card-header text-center" style="background-color: #0092fc; color: white;">
+                    <p style="font-size: 1.5rem; font-weight: bold;" name="card-job-id"></p>
+                    <div style="line-height: .5;">
+                        <p style="font-size: 0.7rem;">เวลาเริ่มต้นของบริการ:&nbsp;<span name="card-job-time-start" class="fw-bold">2021-04-13 07:00</span></p>
+                        <p style="font-size: 0.7rem;">ผู้ติดต่อ:&nbsp;<span name="card-contact" class="fw-bold">xxxxxxxx</span></p>
+                        <p style="font-size: 0.7rem;">หมายเลขโทรศัพท์:&nbsp;<span name="card-phone" class="fw-bold">xxxxxxxx</span></p>
+                        <p style="font-size: 0.7rem;">วีแชท:&nbsp;<span name="card-wechat">xxxxxxxx</span></p>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <img src="/256240.png" class="img-fluid" style="position:absolute; opacity: .2; top: 35%; right: 0;">
+                    <h5 class=" card-title">บริการรับส่ง</h5>
+                    <div class="row">
+                        <div class="col-6">
+                            <label style="font-size: .7rem" class="text-muted">เวลาเริ่มต้นของบริการ</label>
+                            <p class="fw-bold" name="card-time-start">2021-04-13 07:00</p>
+                        </div>
+                        <div class="col-6">
+                            <label style="font-size: .7rem" class="text-muted">ประเภทรถที่ใช้</label>
+                            <p class="fw-bold" name="card-car-type">xxxxxxxx</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <label style="font-size: .7rem" class="text-muted">สถานที่รับ</label>
+                            <p class="fw-bold" name="card-address">xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <label style="font-size: .7rem" class="text-muted">สถานที่ปลายทาง</label>
+                            <p class="fw-bold" name="card-dest-address">xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <label style="font-size: .7rem" class="text-muted">จำนวนผู้โดยสาร</label>
+                            <p class="fw-bold">ผู้ใหญ่&nbsp;<span name="card-passengers-adult">3</span>&nbsp;เด็ก&nbsp;<span name="card-passengers-kid">0</span></p>
+                        </div>
+                        <div class="col-3">
+                            <label style="font-size: .7rem" class="text-muted">เบาะนั่งเด็ก</label>
+                            <p class="fw-bold" name="card-kid-seat">0</p>
+                        </div>
+                        <div class="col-3">
+                            <label style="font-size: .7rem" class="text-muted">จำนวนกระเป๋า</label>
+                            <p class="fw-bold" name="card-bag">0</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <label style="font-size: .7rem" class="text-muted">หมายเหตุ</label>
+                            <p class="fw-bold" name="card-note">Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda deserunt at ab corrupti quae, sapiente culpa debitis sequi nulla dolorem hic accusamus, necessitatibus qui
+                                incidunt
+                                maxime eos repudiandae molestias suscipit.</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <script>
+        $(document).ready(function () {
+            $('input[name="job-time-start"]').change(function () {
+                console.log($(this).val());
+                let m = moment($(this).val())
+                moment.locale('th')
+                $('p[name="time-start"]').html(m.format('lll'))
+            })
+
+        })
+        $('.btn-warning').click(function () {
+            $.LoadingOverlay("show");
+            $('.form-control, p[name="time-start"]').each(function () {
+                let name = $(this).attr('name')
+                let val = $(this).val()
+                if (name == 'job-time-start') {
+                    let m = moment(val)
+                    moment.locale('th')
+                    val = m.format('lll')
+                }
+                else if (name == 'time-start') {
+                    let m = moment($('job-time-start').val())
+                    moment.locale('th')
+                    val = m.format('lll')
+                }
+                console.log("🚀 ~ name", name)
+                $('[name="card-' + name + '"]').html(val)
+            })
+            $('#save-area').closest('.row').show()
+            var file
+            html2canvas(document.getElementById('save-area')).then(async function (canvas) {
+
+                let imageData = await canvas.toDataURL("image/png");
+                // Now browser starts downloading it instead of just showing it
+                // var newData = imageData.replace(/^data:image\/png/, "data:application/octet-stream");
+                // let link = document.createElement('a');
+                // $(link).attr("download", $('[name="job-id"]').val() + '.png').attr("href", newData);
+                // link.click();
+                // link = null;
+
+                sendNotify(imageData, $('[name="job-id"]').val() + '.png')
+                $('#save-area').closest('.row').hide()
+            });
+
+
+            function sendNotify(filedata, name) {
+                let url = 'https://script.google.com/macros/s/AKfycbyxCgkHxpbdUi7VKESGwR5tj2eCl9JHCpAhKk-YrIFdd64k1M-qPMsYgTJnQBninhuDxQ/exec'
+                console.log({ file: filedata, name: name })
+                $.ajax({
+                    method: 'post',
+                    url: 'https://script.google.com/macros/s/AKfycbwhRPnlXkjXuWkQ66BiWG04Nh7YPe4JmW2UHjgX1W4VE_qVurBLQfRFRaI2R6yrIvg/exec',
+                    data: {
+                        file: filedata,
+                        name: name
+                    },
+                    success: function (res) {
+                        $.LoadingOverlay("hide");
+                        console.log(res)
+                        if (res.status == 'success') {
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'ส่งงานเข้ากลุ่มแล้ว',
+                                confirmButtonText: 'ตกลง'
+                            }).then(() => {
+                                location.reload()
+                            })
+                        }
+                    }
+                })
+            }
+            //0gUVAA4vWgaPvv0fOTDrSI3K7C2fR207HBj0DzEECyM
+        })
+
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/moment@2.29.4/moment.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/moment@2.29.4/locale/th.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js" integrity="sha512-BNaRQnYJYiPSqHHDb58B0yaPfCu+Wgds8Gp/gU33kqBtgNS4tSPHuGibyoeqMV/TJlSKda6FXzoEyYGjTe+vXA==" crossorigin="anonymous"
+        referrerpolicy="no-referrer"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gasparesganga-jquery-loading-overlay@2.1.7/dist/loadingoverlay.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</body>
+
+</html>
