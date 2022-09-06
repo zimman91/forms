@@ -128,43 +128,44 @@
                     <div class="row">
                         <div class="col-6">
                             <label style="font-size: .7rem" class="text-muted">เวลาเริ่มต้นของบริการ</label>
-                            <p class="fw-bold" name="card-time-start">2021-04-13 07:00</p>
+                            <p class="fw-bold" style="font-size:0.8rem" name="card-time-start"></p>
                         </div>
                         <div class="col-6">
                             <label style="font-size: .7rem" class="text-muted">ประเภทรถที่ใช้</label>
-                            <p class="fw-bold" name="card-car-type">xxxxxxxx</p>
+                            <p class="fw-bold" style="font-size:0.8rem" name="card-car-type">xxxxxxxx</p>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-12">
                             <label style="font-size: .7rem" class="text-muted">สถานที่รับ</label>
-                            <p class="fw-bold" name="card-address">xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</p>
+                            <p class="fw-bold" style="font-size:0.8rem" name="card-address">xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</p>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-12">
                             <label style="font-size: .7rem" class="text-muted">สถานที่ปลายทาง</label>
-                            <p class="fw-bold" name="card-dest-address">xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</p>
+                            <p class="fw-bold" style="font-size:0.8rem" name="card-dest-address">xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</p>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-6">
                             <label style="font-size: .7rem" class="text-muted">จำนวนผู้โดยสาร</label>
-                            <p class="fw-bold">ผู้ใหญ่&nbsp;<span name="card-passengers-adult">3</span>&nbsp;เด็ก&nbsp;<span name="card-passengers-kid">0</span></p>
+                            <p class="fw-bold" style="font-size:0.8rem">ผู้ใหญ่&nbsp;<span name="card-passengers-adult">3</span>&nbsp;เด็ก&nbsp;<span name="card-passengers-kid">0</span></p>
                         </div>
                         <div class="col-3">
                             <label style="font-size: .7rem" class="text-muted">เบาะนั่งเด็ก</label>
-                            <p class="fw-bold" name="card-kid-seat">0</p>
+                            <p class="fw-bold" style="font-size:0.8rem" name="card-kid-seat">0</p>
                         </div>
                         <div class="col-3">
                             <label style="font-size: .7rem" class="text-muted">จำนวนกระเป๋า</label>
-                            <p class="fw-bold" name="card-bag">0</p>
+                            <p class="fw-bold" style="font-size:0.8rem" name="card-bag">0</p>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-12">
                             <label style="font-size: .7rem" class="text-muted">หมายเหตุ</label>
-                            <p class="fw-bold" name="card-note">Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda deserunt at ab corrupti quae, sapiente culpa debitis sequi nulla dolorem hic accusamus, necessitatibus qui
+                            <p class="fw-bold" style="font-size:0.8rem" name="card-note">Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda deserunt at ab corrupti quae, sapiente culpa debitis sequi nulla dolorem hic accusamus,
+                                necessitatibus qui
                                 incidunt
                                 maxime eos repudiandae molestias suscipit.</p>
                         </div>
@@ -191,11 +192,13 @@
                 let val = $(this).val()
                 if (name == 'job-time-start') {
                     let m = moment(val)
+                    console.log("🚀 ~ m", m)
                     moment.locale('th')
                     val = m.format('lll')
                 }
                 else if (name == 'time-start') {
-                    let m = moment($('job-time-start').val())
+                    let m = moment($('[name="job-time-start"]').val())
+                    console.log("🚀 ~ m", m)
                     moment.locale('th')
                     val = m.format('lll')
                 }
@@ -208,11 +211,11 @@
 
                 let imageData = await canvas.toDataURL("image/png");
                 // Now browser starts downloading it instead of just showing it
-                // var newData = imageData.replace(/^data:image\/png/, "data:application/octet-stream");
-                // let link = document.createElement('a');
-                // $(link).attr("download", $('[name="job-id"]').val() + '.png').attr("href", newData);
-                // link.click();
-                // link = null;
+                var newData = imageData.replace(/^data:image\/png/, "data:application/octet-stream");
+                let link = document.createElement('a');
+                $(link).attr("download", $('[name="job-id"]').val() + '.png').attr("href", newData);
+                link.click();
+                link = null;
 
                 sendNotify(imageData, $('[name="job-id"]').val() + '.png')
                 $('#save-area').closest('.row').hide()
@@ -220,6 +223,7 @@
 
 
             function sendNotify(filedata, name) {
+                // let url = 'https://script.google.com/macros/s/AKfycbwhRPnlXkjXuWkQ66BiWG04Nh7YPe4JmW2UHjgX1W4VE_qVurBLQfRFRaI2R6yrIvg/exec'
                 let url = 'https://script.google.com/macros/s/AKfycbyxCgkHxpbdUi7VKESGwR5tj2eCl9JHCpAhKk-YrIFdd64k1M-qPMsYgTJnQBninhuDxQ/exec'
                 console.log({ file: filedata, name: name })
                 $.ajax({
