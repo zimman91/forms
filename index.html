@@ -187,6 +187,7 @@
         })
         $('.btn-warning').click(function () {
             $.LoadingOverlay("show");
+            let date
             $('.form-control, p[name="time-start"]').each(function () {
                 let name = $(this).attr('name')
                 let val = $(this).val()
@@ -201,6 +202,7 @@
                     console.log("🚀 ~ m", m)
                     moment.locale('th')
                     val = m.format('lll')
+                    date = val
                 }
                 console.log("🚀 ~ name", name)
                 $('[name="card-' + name + '"]').html(val)
@@ -217,12 +219,12 @@
                 link.click();
                 link = null;
 
-                sendNotify(imageData, $('[name="job-id"]').val() + '.png')
+                sendNotify(imageData, $('[name="job-id"]').val() + '.png',date)
                 $('#save-area').closest('.row').hide()
             });
 
 
-            function sendNotify(filedata, name) {
+            function sendNotify(filedata, name,date) {
                 // let url = 'https://script.google.com/macros/s/AKfycbwhRPnlXkjXuWkQ66BiWG04Nh7YPe4JmW2UHjgX1W4VE_qVurBLQfRFRaI2R6yrIvg/exec'
                 let url = 'https://script.google.com/macros/s/AKfycbyxCgkHxpbdUi7VKESGwR5tj2eCl9JHCpAhKk-YrIFdd64k1M-qPMsYgTJnQBninhuDxQ/exec'
                 console.log({ file: filedata, name: name })
@@ -231,7 +233,8 @@
                     url: 'https://script.google.com/macros/s/AKfycbwhRPnlXkjXuWkQ66BiWG04Nh7YPe4JmW2UHjgX1W4VE_qVurBLQfRFRaI2R6yrIvg/exec',
                     data: {
                         file: filedata,
-                        name: name
+                        name: name,
+                        date: date
                     },
                     success: function (res) {
                         $.LoadingOverlay("hide");
