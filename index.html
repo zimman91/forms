@@ -213,11 +213,11 @@
 
                 let imageData = await canvas.toDataURL("image/png");
                 // Now browser starts downloading it instead of just showing it
-                var newData = imageData.replace(/^data:image\/png/, "data:application/octet-stream");
-                let link = document.createElement('a');
-                $(link).attr("download", $('[name="job-id"]').val() + '.png').attr("href", newData);
-                link.click();
-                link = null;
+                // var newData = imageData.replace(/^data:image\/png/, "data:application/octet-stream");
+                // let link = document.createElement('a');
+                // $(link).attr("download", $('[name="job-id"]').val() + '.png').attr("href", newData);
+                // link.click();
+                // link = null;
 
                 sendNotify(imageData, $('[name="job-id"]').val() + '.png', date)
                 $('#save-area').closest('.row').hide()
